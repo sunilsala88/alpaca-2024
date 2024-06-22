@@ -15,6 +15,7 @@ secret_key = cs.secret_key
 
 
 
+
 tickers = ["BTC/USD",'ETH/USD']
 crypto_client = CryptoHistoricalDataClient()
 trade_client = TradingClient(api_key=api_key, secret_key=secret_key, paper=True, url_override=None)
@@ -24,14 +25,15 @@ trade_client = TradingClient(api_key=api_key, secret_key=secret_key, paper=True,
 #     print(Crypto(tick,exchange,currency))
 #     contract_objects[tick]=ib.qualifyContracts(Crypto(tick,exchange,currency))[0]
 # print(contract_objects)
-
+e1=datetime.now()
 def get_historical_data(ticker_contract):
 
     request_params = CryptoBarsRequest(
                             symbol_or_symbols=ticker_contract,
                             timeframe=TimeFrame.Minute,
-                            start=datetime.datetime(2024, 5, 20),
-                            end=datetime.datetime(2024, 6, 16)
+                            end=e1,
+                            start=datetime.datetime(e1.year,e1.month,e1.day-10)
+                            
                     )
 
     bars = crypto_client.get_crypto_bars(request_params)
